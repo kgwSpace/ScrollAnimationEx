@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        h1{
+            font-size: 5em;
+            position: fixed;
+            width : 100%;
+            top : 200px;
+            text-Align: center;
+        }
+        body{
+            height: 3000px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">안녕하세요</h1>
+    <script>
+        const h1Elem = document.querySelector('.title');
+        let bodyHeight = 3000 - window.innerHeight;
+        console.log(bodyHeight)
+
+        h1Elem.style.transform = `translateY(20%)`
+
+        //scroll : 0 ~ 2063
+        //translateY :20 ~ 48
+        //스크롤에 비례해서 움직이도록
+        
+        window.addEventListener('scroll',()=>{
+            let rate = window.scrollY/bodyHeight;// scroll / 2063
+            
+            if(rate<0)
+                rate = 0;
+            
+            if(rate>=1)
+                rate = 1;
+                
+            console.log(`rate = ${rate}, value = ${20+rate*28}`)
+
+            h1Elem.style.transform = `translateY(${20+rate*28}%)`//-50%->48
+        })
+        
+    </script>
+</body>
+</html>
